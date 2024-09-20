@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og:http://ogp.me/ns#">
+
+  <head>
+    <title>Greenwood Demo - AWS Adapter</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico"/>
+    <link rel="icon" href="/favicon.ico"/>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
+    <link rel="stylesheet" href="../styles/main.css">
+    <script type="module" src="./components/card.js"></script>
+    <script type="module" src="./components/modal.js"></script>
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a> | </li>
+          <li><a href="/products/">Products</a> | </li>
+          <li><a href="/search/">Search</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <h1>Demos</h1>
+      <p>This is a
+        <a href="https://github.com/ProjectEvergreen/greenwood-demo-adapter-aws" title="Link to demonstration repo">Greenwood demonstration repo</a>
+        showcasing various features deployed to and running on AWS static hosting and serverless functions.
+      </p>
+      <page-outlet></page-outlet>
+    </main>
+
+    <footer>
+      <a href="https://www.greenwoodjs.io/">Greenwood</a>
+    </footer>
+
+    <app-modal></app-modal>
+
+  </body>
+
+</html>

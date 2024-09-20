@@ -1,0 +1,32 @@
+{
+  "name": "greenwood-demo-adapter-aws",
+  "version": "1.0.0",
+  "description": "A demonstration repo for deploying a full-stack Greenwood app with AWS static hosting and serverless functions.",
+  "homepage": "https://github.com/ProjectEvergreen/greenwood-demo-adapter-aws#readme",
+  "author": "Owen Buckley <owen@thegreenhouse.io>",
+  "license": "ISC",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ProjectEvergreen/greenwood-demo-adapter-aws.git"
+  },
+  "keywords": [
+    "Greenwood",
+    "AWS",
+    "WCC",
+    "Web Components",
+    "Serverless",
+    "SSR"
+  ],
+  "scripts": {
+    "clean": "rimraf public .greenwood",
+    "dev": "greenwood develop",
+    "build": "greenwood build",
+    "serve": "greenwood build && greenwood serve",
+    "start": "npm run serve"
+  },
+  "devDependencies": {
+    "@greenwood/cli": "~0.30.0-alpha.6",
+    "rimraf": "^5.0.0"
+  }
+}
