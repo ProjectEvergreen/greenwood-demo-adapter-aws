@@ -2,7 +2,7 @@
 
 A demonstration repo for deploying a full-stack [**Greenwood**](https://www.greenwoodjs.dev/) app with AWS static hosting and serverless functions.
 
-> ⚠️ _**Note**: Currently this repo is a WIP_
+> ⚠️ _**Note**: This repo is currently a [work in progress](https://github.com/ProjectEvergreen/greenwood/issues/1142)_
 
 ## Setup
 
