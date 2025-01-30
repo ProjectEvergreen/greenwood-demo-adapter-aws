@@ -5,9 +5,9 @@ on: [pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
-    # permissions:
-    #   id-token: write
-    #   contents: read
+    permissions:
+      id-token: write
+      contents: read
 
     # match to your version of NodeJS
     steps:
