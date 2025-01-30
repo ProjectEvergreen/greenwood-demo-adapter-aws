@@ -8,7 +8,7 @@ jobs:
 
     # match to your version of NodeJS
     steps:
-      - uses: aws-actions/configure-aws-credentials@v2
+      - uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-region: ${{ secrets.AWS_REGION }}
       - uses: actions/checkout@v4
