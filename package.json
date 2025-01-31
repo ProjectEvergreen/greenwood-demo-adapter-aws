@@ -32,5 +32,8 @@
     "@greenwood/cli": "~0.31.0",
     "rimraf": "^6.0.0",
     "sst": "^3.6.37"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "^4.9.5"
   }
 }
