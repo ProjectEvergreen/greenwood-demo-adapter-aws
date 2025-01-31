@@ -19,6 +19,7 @@
     "SSR"
   ],
   "scripts": {
+    "sst": "sst",
     "clean": "rimraf public .greenwood",
     "dev": "greenwood develop",
     "build": "greenwood build",
