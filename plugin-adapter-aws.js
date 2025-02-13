@@ -108,31 +108,31 @@ async function awsAdapter(compilation, options) {
   // }));
 
   // TODO
-  // for (const page of ssrPages) {
-  //   const outputType = 'page';
-  //   const { id, outputHref } = page;
-  //   const outputRoot = new URL(`./routes/${basePath}/${id}/`, adapterOutputUrl);
-  //   const chunks = (await fs.readdir(outputDir))
-  //     .filter(file => file.startsWith(`${id}.route.chunk`) && file.endsWith('.js'));
+  for (const page of ssrPages) {
+    const outputType = 'page';
+    const { id, outputHref } = page;
+    const outputRoot = new URL(`./routes/${basePath}/${id}/`, adapterOutputUrl);
+    const chunks = (await fs.readdir(outputDir))
+      .filter(file => file.startsWith(`${id}.route.chunk`) && file.endsWith('.js'));
 
-  //   await setupFunctionBuildFolder(id, outputType, outputRoot, runtime);
+    await setupFunctionBuildFolder(id, outputType, outputRoot, runtime);
 
-  //   // handle user's actual route entry file
-  //   await fs.cp(
-  //     new URL(outputHref),
-  //     new URL(`./${outputHref.replace(outputDir.href, '')}`, outputRoot),
-  //     { recursive: true }
-  //   );
+    // handle user's actual route entry file
+    await fs.cp(
+      new URL(outputHref),
+      new URL(`./${outputHref.replace(outputDir.href, '')}`, outputRoot),
+      { recursive: true }
+    );
 
-  //   // and any (URL) chunks for the page
-  //   for (const chunk of chunks) {
-  //     await fs.cp(
-  //       new URL(`./${chunk}`, outputDir),
-  //       new URL(`./${chunk}`, outputRoot),
-  //       { recursive: true }
-  //     );
-  //   }
-  // }
+    // and any (URL) chunks for the page
+    for (const chunk of chunks) {
+      await fs.cp(
+        new URL(`./${chunk}`, outputDir),
+        new URL(`./${chunk}`, outputRoot),
+        { recursive: true }
+      );
+    }
+  }
 
   for (const [key, value] of apiRoutes.entries()) {
     const outputType = 'api';

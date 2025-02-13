@@ -19,5 +19,11 @@ api.route("GET /api/fragment", {
 api.route("POST /api/search", {
   bundle: ".aws-output/api/search",
   handler: "index.handler",
-  runtime: "nodejs22.x"
+  // runtime: "nodejs22.x"
+});
+
+api.route("GET /routes/products", {
+  bundle: ".aws-output/routes/products",
+  handler: "index.handler",
+  // runtime: "nodejs22.x"
 });
