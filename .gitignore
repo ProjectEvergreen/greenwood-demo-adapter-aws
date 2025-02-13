@@ -1,4 +1,4 @@
-.aws/
+.aws-output/
 .env
 .greenwood/
 .sst/

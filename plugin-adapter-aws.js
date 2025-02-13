@@ -20,30 +20,37 @@ function generateOutputFormat(id, type) {
       console.log({ context });
       const { body, rawPath, rawQueryString, headers = {} } = event;
       const method = event.routeKey.split(' ')[0];
-      const params = rawQueryString === '' ? '' : \`?\${rawQueryString}\`;
+      const queryParams = rawQueryString === '' ? '' : \`?\${rawQueryString}\`;
       const contentType = headers['content-type'] || '';
-      console.log({ method, params });
+      console.log({ method, queryParams });
       let format = body;
 
       if (['GET', 'HEAD'].includes(method.toUpperCase())) {
         format = null
-      } else if (contentType.includes('application/x-www-form-urlencoded')) {
+      } else if (contentType.includes('application/x-www-form-urlencoded') && event.isBase64Encoded) {
         const formData = new FormData();
+        const formParams = new URLSearchParams(atob(body));
 
-        for (const key of Object.keys(body)) {
-          formData.append(key, body[key]);
-        }
+        console.log({ formParams });
+        formParams.forEach((value, key) => {
+          console.log({ key, value });
+          formData.append(key, value);
+        });
+        // for (const key of Object.keys(formParams)) {
+        //   formData.append(key, formParams[key]);
+        // }
 
         // when using FormData, let Request set the correct headers
         // or else it will come out as multipart/form-data
         // https://stackoverflow.com/a/43521052/417806
         format = formData;
         delete headers['content-type'];
+        console.log({ formData });
       } else if(contentType.includes('application/json')) {
         format = JSON.stringify(body);
       }
 
-      const req = new Request(new URL(\`\${rawPath}\${params}\`, \`http://\${headers.host}\`), {
+      const req = new Request(new URL(\`\${rawPath}\${queryParams}\`, \`http://\${headers.host}\`), {
         body: format,
         headers: new Headers(headers),
         method
@@ -70,10 +77,10 @@ async function setupFunctionBuildFolder(id, outputType, outputRoot, runtime) {
 
   await fs.mkdir(outputRoot, { recursive: true });
   await fs.writeFile(new URL('./index.js', outputRoot), outputFormat);
+  await fs.writeFile(new URL('./package.json', outputRoot), JSON.stringify({
+    type: 'module'
+  }));
   // TODO not needed?
-  // await fs.writeFile(new URL('./package.json', outputRoot), JSON.stringify({
-  //   type: 'module'
-  // }));
   // await fs.writeFile(new URL('./.vc-config.json', outputRoot), JSON.stringify({
   //   runtime,
   //   handler: 'index.js',
@@ -87,7 +94,7 @@ async function awsAdapter(compilation, options) {
   const { outputDir, projectDirectory } = compilation.context;
   const { basePath } = compilation.config;
   // TODO should we use something other than .aws for the output folder?
-  const adapterOutputUrl = new URL('./.aws/', projectDirectory);
+  const adapterOutputUrl = new URL('./.aws-output/', projectDirectory);
   const ssrPages = compilation.graph.filter(page => page.isSSR);
   const apiRoutes = compilation.manifest.apis;
 

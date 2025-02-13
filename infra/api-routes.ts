@@ -2,21 +2,22 @@
 
 export const api = new sst.aws.ApiGatewayV2("Api");
 
-// TODO need to loop
+// TODO need to pull from manifest?
 // TODO need to handle basePath here?  (and / or all adapters?)
 
-api.route("GET /api/hello", {
-  handler: "functions/hello.handler",
+api.route("GET /api/greeting", {
+  bundle: ".aws-output/api/greeting",
+  handler: "index.handler",
+  // runtime: "nodejs22.x"
 });
 
-// api.route("GET /api/fragment", {
-//   handler: ".aws/api/fragment/index.handler",
-// });
-
-api.route("GET /api/greeting", {
-  handler: ".aws/api/greeting/index.handler",
+api.route("GET /api/fragment", {
+  bundle: ".aws-output/api/fragment",
+  handler: "index.handler",
 });
 
 api.route("POST /api/search", {
-  handler: ".aws/api/search/index.handler",
+  bundle: ".aws-output/api/search",
+  handler: "index.handler",
+  runtime: "nodejs22.x"
 });
