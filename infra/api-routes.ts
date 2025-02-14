@@ -1,29 +1,31 @@
 export const api = new sst.aws.ApiGatewayV2("Api");
 
+// TODO handle base path
+const POST_ROUTES = ['/api/search']
+const apiRoutes = ((await import(new URL('../../public/manifest.json', import.meta.url), { with: { type: 'json' } })).default).apis.value;
+const ssrPages = ((await import(new URL('../../public/graph.json', import.meta.url), { with: { type: 'json' } })).default).filter(page => page.isSSR);
+
+ssrPages.forEach((page) => {
+  const { route, id } = page;
+
+  api.route(`GET /routes/${id}`, {
+    bundle: `.aws-output/routes/${id}`,
+    handler: "index.handler",
+    // runtime: "nodejs22.x"
+  });
+})
+
 // TODO need to pull from manifest?
 // TODO need to handle basePath here?  (and / or all adapters?)
-
 // https://sst.dev/docs/component/aws/apigatewayv2
 // https://sst.dev/docs/component/aws/function
-api.route("GET /api/greeting", {
-  bundle: ".aws-output/api/greeting",
-  handler: "index.handler",
-  // runtime: "nodejs22.x"
-});
+apiRoutes.forEach((apiRoute) => {
+  const [route] = apiRoute;
+  const method = POST_ROUTES.includes(route) ? 'POST' : 'GET';
 
-api.route("GET /api/fragment", {
-  bundle: ".aws-output/api/fragment",
-  handler: "index.handler",
-});
-
-api.route("POST /api/search", {
-  bundle: ".aws-output/api/search",
-  handler: "index.handler",
-  // runtime: "nodejs22.x"
-});
-
-api.route("GET /routes/products", {
-  bundle: ".aws-output/routes/products",
-  handler: "index.handler",
-  // runtime: "nodejs22.x"
+  api.route(`${method} ${route}`, {
+    bundle: `.aws-output/${route}`,
+    handler: "index.handler",
+    // runtime: "nodejs22.x"
+  })
 });
