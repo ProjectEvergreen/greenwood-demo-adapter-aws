@@ -1,5 +1,3 @@
-// import { bucket } from "./storage";
-
 export const api = new sst.aws.ApiGatewayV2("Api");
 
 // TODO need to pull from manifest?

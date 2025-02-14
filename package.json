@@ -25,7 +25,6 @@
     "build": "greenwood build",
     "serve": "greenwood build && greenwood serve",
     "start": "npm run serve",
-    "deploy:dev": "sst -- dev",
     "deploy:preview": "sst deploy --stage preview",
     "deploy:prod": "sst deploy --stage production"
   },
