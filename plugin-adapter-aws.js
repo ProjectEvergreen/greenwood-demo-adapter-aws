@@ -11,7 +11,6 @@ function generateOutputFormat(id, type) {
     ? `${id}.route`
     : id;
 
-  // TODO is this the right shape of the handler params???
   return `
     import { handler as ${handlerAlias} } from './${path}.js';
 
@@ -80,20 +79,12 @@ async function setupFunctionBuildFolder(id, outputType, outputRoot, runtime) {
   await fs.writeFile(new URL('./package.json', outputRoot), JSON.stringify({
     type: 'module'
   }));
-  // TODO not needed?
-  // await fs.writeFile(new URL('./.vc-config.json', outputRoot), JSON.stringify({
-  //   runtime,
-  //   handler: 'index.js',
-  //   launcherType: 'Nodejs',
-  //   shouldAddHelpers: true
-  // }));
 }
 
 async function awsAdapter(compilation, options) {
   const { runtime = DEFAULT_RUNTIME } = options;
   const { outputDir, projectDirectory } = compilation.context;
   const { basePath } = compilation.config;
-  // TODO should we use something other than .aws for the output folder?
   const adapterOutputUrl = new URL('./.aws-output/', projectDirectory);
   const ssrPages = compilation.graph.filter(page => page.isSSR);
   const apiRoutes = compilation.manifest.apis;
@@ -102,12 +93,6 @@ async function awsAdapter(compilation, options) {
     await fs.mkdir(adapterOutputUrl, { recursive: true });
   }
 
-  // TODO ?
-  // await fs.writeFile(new URL('./.vercel/output/config.json', projectDirectory), JSON.stringify({
-  //   'version': 3
-  // }));
-
-  // TODO
   for (const page of ssrPages) {
     const outputType = 'page';
     const { id, outputHref } = page;
@@ -158,16 +143,6 @@ async function awsAdapter(compilation, options) {
       );
     }
   }
-
-  // TODO not needed, right?
-  // static assets / build
-  // await fs.cp(
-  //   outputDir,
-  //   new URL('./.vercel/output/static/', projectDirectory),
-  //   {
-  //     recursive: true
-  //   }
-  // );
 }
 
 const greenwoodPluginAdapterAws = (options = {}) => [{
