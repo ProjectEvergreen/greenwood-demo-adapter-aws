@@ -3,6 +3,8 @@ export const api = new sst.aws.ApiGatewayV2("Api");
 // TODO need to pull from manifest?
 // TODO need to handle basePath here?  (and / or all adapters?)
 
+// https://sst.dev/docs/component/aws/apigatewayv2
+// https://sst.dev/docs/component/aws/function
 api.route("GET /api/greeting", {
   bundle: ".aws-output/api/greeting",
   handler: "index.handler",
