@@ -1,10 +1,12 @@
 export const api = new sst.aws.ApiGatewayV2("Api");
 
-// TODO handle base path
+// TODO need to handle basePath here?  (and / or all adapters?)
 const POST_ROUTES = ['/api/search']
 const apiRoutes = ((await import(new URL('../../public/manifest.json', import.meta.url), { with: { type: 'json' } })).default).apis.value;
 const ssrPages = ((await import(new URL('../../public/graph.json', import.meta.url), { with: { type: 'json' } })).default).filter(page => page.isSSR);
 
+// https://sst.dev/docs/component/aws/apigatewayv2
+// https://sst.dev/docs/component/aws/function
 ssrPages.forEach((page) => {
   const { route, id } = page;
 
@@ -15,10 +17,6 @@ ssrPages.forEach((page) => {
   });
 })
 
-// TODO need to pull from manifest?
-// TODO need to handle basePath here?  (and / or all adapters?)
-// https://sst.dev/docs/component/aws/apigatewayv2
-// https://sst.dev/docs/component/aws/function
 apiRoutes.forEach((apiRoute) => {
   const [route] = apiRoute;
   const method = POST_ROUTES.includes(route) ? 'POST' : 'GET';
