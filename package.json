@@ -30,7 +30,7 @@
     "deploy:prod": "npm run arc deploy -- --production"
   },
   "devDependencies": {
-    "@architect/architect": "^10.11.2",
+    "@architect/architect": "^11.1.0",
     "@greenwood/cli": "~0.31.0",
     "rimraf": "^6.0.0"
   }
