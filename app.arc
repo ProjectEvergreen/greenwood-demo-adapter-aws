@@ -3,15 +3,15 @@ greenwood-demo-adapter-aws
 
 @http
 /api/fragment
-  method get
+  method any
   src .aws-output/api/fragment
 
 /api/greeting
-  method get
+  method any
   src .aws-output/api/greeting
 
 /api/search
-  method post
+  method any
   src .aws-output/api/search
 
 /products/*
