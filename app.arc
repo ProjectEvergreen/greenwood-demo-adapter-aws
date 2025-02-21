@@ -14,7 +14,7 @@ greenwood-demo-adapter-aws
   method post
   src .aws-output/api/search
 
-/products
+/products/*
   method get
   src .aws-output/routes/products
 
