@@ -15,10 +15,10 @@ function generateOutputFormat(id, type) {
     import { handler as ${handlerAlias} } from './${path}.js';
 
     export async function handler (event, context) {
-      console.log({ event });
-      console.log({ context });
+      console.log('?????', event.requestContext)
       const { body, rawPath, rawQueryString, headers = {} } = event;
-      const method = event.routeKey.split(' ')[0];
+      const { method = '' } = event?.requestContext?.http;
+      console.log({ method });
       const queryParams = rawQueryString === '' ? '' : \`?\${rawQueryString}\`;
       const contentType = headers['content-type'] || '';
       console.log({ method, queryParams });
