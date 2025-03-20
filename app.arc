@@ -22,7 +22,7 @@ greenwood-demo-adapter-aws
   method get
   src .aws-output/routes/products
 
-/products/blog/first-post*
+/blog/first-post*
   method get
   src .aws-output/routes/blog-first-post
 
