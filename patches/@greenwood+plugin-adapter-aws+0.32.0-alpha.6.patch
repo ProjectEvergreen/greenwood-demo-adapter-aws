@@ -1,0 +1,13 @@
+diff --git a/node_modules/@greenwood/plugin-adapter-aws/src/index.js b/node_modules/@greenwood/plugin-adapter-aws/src/index.js
+index 724fccf..f8ea9a3 100644
+--- a/node_modules/@greenwood/plugin-adapter-aws/src/index.js
++++ b/node_modules/@greenwood/plugin-adapter-aws/src/index.js
+@@ -32,8 +32,6 @@ function generateOutputFormat(id, type) {
+         // https://stackoverflow.com/a/43521052/417806
+         format = formData;
+         delete headers['content-type'];
+-      } else if(contentType.includes('application/json')) {
+-        format = JSON.stringify(body);
+       }
+ 
+       const req = new Request(new URL(\`\${rawPath}\${queryParams}\`, \`http://\${headers.host}\`), {
