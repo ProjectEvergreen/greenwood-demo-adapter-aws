@@ -26,11 +26,13 @@
     "serve": "greenwood build && greenwood serve",
     "start": "npm run serve",
     "deploy:preview": "sst deploy --stage preview",
-    "deploy:prod": "sst deploy --stage production"
+    "deploy:prod": "sst deploy --stage production",
+    "postinstall": "patch-package"
   },
   "devDependencies": {
     "@greenwood/cli": "~0.32.0-alpha.6",
     "@greenwood/plugin-adapter-aws": "~0.32.0-alpha.6",
+    "patch-package": "^8.0.0",
     "rimraf": "^6.0.0",
     "sst": "^3.6.37"
   },
