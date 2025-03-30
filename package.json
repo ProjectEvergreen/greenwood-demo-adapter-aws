@@ -27,14 +27,12 @@
     "start": "npm run serve",
     "deploy:sandbox": "npm run build && arc sandbox",
     "deploy:staging": "npm run arc deploy -- --staging",
-    "deploy:prod": "npm run arc deploy -- --production",
-    "postinstall": "patch-package"
+    "deploy:prod": "npm run arc deploy -- --production"
   },
   "devDependencies": {
     "@architect/architect": "^11.1.0",
-    "@greenwood/cli": "~0.32.0-alpha.6",
-    "@greenwood/plugin-adapter-aws": "~0.32.0-alpha.6",
-    "patch-package": "^8.0.0",
+    "@greenwood/cli": "~0.32.0-alpha.8",
+    "@greenwood/plugin-adapter-aws": "~0.32.0-alpha.8",
     "rimraf": "^6.0.0"
   }
 }
