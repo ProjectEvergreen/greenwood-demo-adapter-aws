@@ -1,6 +1,7 @@
 import { frontend } from './static';
 import { api } from './api-routes';
 
+// @ts-expect-error see https://github.com/microsoft/TypeScript/issues/42866
 const ssrPages = ((await import(new URL('../../public/graph.json', import.meta.url), { with: { type: 'json' } })).default).filter(page => page.isSSR);
 const ssrRoutes = {};
 
