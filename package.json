@@ -19,14 +19,20 @@
     "SSR"
   ],
   "scripts": {
+    "arc": "arc",
     "clean": "rimraf public .greenwood",
     "dev": "greenwood develop",
     "build": "greenwood build",
     "serve": "greenwood build && greenwood serve",
-    "start": "npm run serve"
+    "start": "npm run serve",
+    "deploy:sandbox": "npm run build && arc sandbox",
+    "deploy:staging": "npm run arc deploy -- --staging",
+    "deploy:prod": "npm run arc deploy -- --production"
   },
   "devDependencies": {
-    "@greenwood/cli": "~0.31.0",
+    "@architect/architect": "^11.1.0",
+    "@greenwood/cli": "~0.32.0",
+    "@greenwood/plugin-adapter-aws": "~0.32.0",
     "rimraf": "^6.0.0"
   }
 }

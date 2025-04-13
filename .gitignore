@@ -1,3 +1,5 @@
+.aws-output/
+.env
 .greenwood/
 node_modules/
 public/
