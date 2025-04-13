@@ -1,13 +1,14 @@
-name: Upload Website to S3
+name: Continuous Integration
 
-on:
-  push:
-    branches:
-      - main
+on: [pull_request]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+      contents: read
 
     # match to your version of NodeJS
     steps:
@@ -31,4 +32,4 @@ jobs:
 
       - name: Run SST for preview deployment
         run: |
-          npm run deploy:prod
+          npm run deploy:preview
