@@ -31,11 +31,11 @@ The serverless demos include the following examples:
 
 ### API Routes
 
-- ✅  [`/api/greeting?name{xxx}`](https://greenwood-demo-adapter-vercel.vercel.app/api/greeting) - An API that returns a JSON response and optionally uses the `name` query param for customization.  Otherwise returns a default message.
-- ✅ [`/api/fragment`](https://greenwood-demo-adapter-vercel.vercel.app/api/fragment) - An API for returning fragments of server rendered Web Components as HTML, that are then appended to the DOM.  The same card component used in SSR also runs on the client to provide interactivity, like event handling.
-- ✅ [`/api/search`](https://greenwood-demo-adapter-vercel.vercel.app/api/event) - An API for handling a search using  `request.formData()`
-- ✅ [`/api/event`](https://greenwood-demo-adapter-vercel.vercel.app/api/event) - An API for mimicking a webhook `POST` request that uses `request.json()`
+- ✅  [`/api/greeting?name{xxx}`](https://y9ytogm4l7.execute-api.us-east-1.amazonaws.com/api/greeting) - An API that returns a JSON response and optionally uses the `name` query param for customization.  Otherwise returns a default message.
+- ✅ [`/api/fragment`](https://y9ytogm4l7.execute-api.us-east-1.amazonaws.com/api/fragment) - An API for returning fragments of server rendered Web Components as HTML, that are then appended to the DOM.  The same card component used in SSR also runs on the client to provide interactivity, like event handling.
+- ✅ [`/api/search`](https://y9ytogm4l7.execute-api.us-east-1.amazonaws.com/api/event) - An API for handling a search using  `request.formData()`
+- ✅ [`/api/event`](https://y9ytogm4l7.execute-api.us-east-1.amazonaws.com/api/event) - An API for mimicking a webhook `POST` request that uses `request.json()`
 
 ### SSR Pages
 
-- ✅ [`/products/`](https://greenwood-demo-adapter-vercel.vercel.app/products/) - SSR page for rendering Greenwood pages.
+- ✅ [`/products/`](https://y9ytogm4l7.execute-api.us-east-1.amazonaws.com/products/) - SSR page for rendering Greenwood pages.
