@@ -1,8 +1,6 @@
 # greenwood-demo-adapter-aws
 
-A demonstration repo for deploying a full-stack [**Greenwood**](https://www.greenwoodjs.dev/) app with AWS static hosting and serverless functions.
-
-> ⚠️ _**Note**: This repo is currently a [work in progress](https://github.com/ProjectEvergreen/greenwood/issues/1142)_
+A demonstration repo for deploying a full-stack [**Greenwood**](https://www.greenwoodjs.dev/) app with AWS and [**Architect**](https://arc.codes/) for static hosting and deploying serverless functions.
 
 ## Setup
 
@@ -22,20 +20,22 @@ This repo aims to demonstrate a couple of Greenwood's features ([API Routes](htt
 
 |Feature    |Greenwood |Lambda |
 |---------- |----------|-------|
-|API Routes |   ✅     |   ⚠️   |
-|SSR Pages  |   ✅     |   ⚠️   |
+|API Routes |   ✅     |   ✅  |
+|SSR Pages  |   ✅     |   ✅  |
 
-You can see the live demo at [https://d3vcf0ldftzm8q.cloudfront.net/](https://d3vcf0ldftzm8q.cloudfront.net/).
+You can see the live demo at [https://y9ytogm4l7.execute-api.us-east-1.amazonaws.com/](https://y9ytogm4l7.execute-api.us-east-1.amazonaws.com/).
 
-## Workers
+## Serverless
 
-The demos include the following examples:
+The serverless demos include the following examples:
 
 ### API Routes
 
-- ⚠️ [`/api/greeting?name{xxx}`](https://d3vcf0ldftzm8q.cloudfront.net/api/greeting) - An API that returns a JSON response and optionally uses the `name` query param for customization.  Otherwise returns a default message.
-- ⚠️ [`/api/fragment`](https://d3vcf0ldftzm8q.cloudfront.net/api/fragment) - An API for returning fragments of server rendered Web Components as HTML, that are then appended to the DOM.  The same card component used in SSR also runs on the client to provide interactivity, like event handling.
+- ✅  [`/api/greeting?name{xxx}`](https://greenwood-demo-adapter-vercel.vercel.app/api/greeting) - An API that returns a JSON response and optionally uses the `name` query param for customization.  Otherwise returns a default message.
+- ✅ [`/api/fragment`](https://greenwood-demo-adapter-vercel.vercel.app/api/fragment) - An API for returning fragments of server rendered Web Components as HTML, that are then appended to the DOM.  The same card component used in SSR also runs on the client to provide interactivity, like event handling.
+- ✅ [`/api/search`](https://greenwood-demo-adapter-vercel.vercel.app/api/event) - An API for handling a search using  `request.formData()`
+- ✅ [`/api/event`](https://greenwood-demo-adapter-vercel.vercel.app/api/event) - An API for mimicking a webhook `POST` request that uses `request.json()`
 
 ### SSR Pages
 
-- ⚠️ [`/products/`](https://d3vcf0ldftzm8q.cloudfront.net/products/) - SSR page for rendering Greenwood pages.
+- ✅ [`/products/`](https://greenwood-demo-adapter-vercel.vercel.app/products/) - SSR page for rendering Greenwood pages.
