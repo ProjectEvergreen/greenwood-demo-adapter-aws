@@ -29,8 +29,8 @@
     "deploy:prod": "sst deploy --stage production"
   },
   "devDependencies": {
-    "@greenwood/cli": "~0.32.0-alpha.9",
-    "@greenwood/plugin-adapter-aws": "~0.32.0-alpha.9",
+    "@greenwood/cli": "~0.32.0",
+    "@greenwood/plugin-adapter-aws": "~0.32.0",
     "rimraf": "^6.0.0",
     "sst": "^3.6.37"
   },

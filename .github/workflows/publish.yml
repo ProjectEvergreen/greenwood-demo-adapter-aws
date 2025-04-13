@@ -11,6 +11,10 @@ jobs:
 
     # match to your version of NodeJS
     steps:
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ${{ secrets.AWS_REGION }}
+          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
@@ -25,13 +29,6 @@ jobs:
         run: |
           npm run build
 
-      - name: Upload to S3 and invalidate CDN
-        uses: opspresso/action-s3-sync@master
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          # make sure this matches your bucket's region
-          AWS_REGION: "us-east-1"
-          FROM_PATH: "./public"
-          # your target s3 bucket name goes here
-          DEST_PATH: s3://${{ secrets.AWS_BUCKET_NAME }}
+      - name: Run SST for preview deployment
+        run: |
+          npm run deploy:prod
