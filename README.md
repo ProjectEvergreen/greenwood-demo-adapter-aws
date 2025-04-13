@@ -23,7 +23,7 @@ This repo aims to demonstrate a couple of Greenwood's features ([API Routes](htt
 |API Routes |   ✅     |   ✅  |
 |SSR Pages  |   ✅     |   ✅  |
 
-You can see the live demo at [https://d3fe41uuvgfj7o.cloudfront.net/](https://d3fe41uuvgfj7o.cloudfront.net/).
+You can see the live demo at [https://d2uq7nqhoyk6oy.cloudfront.net/](https://d2uq7nqhoyk6oy.cloudfront.net/).
 
 ## Serverless
 
@@ -31,11 +31,11 @@ The serverless demos include the following examples:
 
 ### API Routes
 
-- ✅  [`/api/greeting?name{xxx}`](https://d3fe41uuvgfj7o.cloudfront.net/api/greeting) - An API that returns a JSON response and optionally uses the `name` query param for customization.  Otherwise returns a default message.
-- ✅ [`/api/fragment`](https://d3fe41uuvgfj7o.cloudfront.net/api/fragment) - An API for returning fragments of server rendered Web Components as HTML, that are then appended to the DOM.  The same card component used in SSR also runs on the client to provide interactivity, like event handling.
-- ✅ [`/api/search`](https://d3fe41uuvgfj7o.cloudfront.net/api/event) - An API for handling a search using  `request.formData()`
-- ✅ [`/api/event`](https://d3fe41uuvgfj7o.cloudfront.net/api/event) - An API for mimicking a webhook `POST` request that uses `request.json()`
+- ✅  [`/api/greeting?name{xxx}`](https://d2uq7nqhoyk6oy.cloudfront.net/api/greeting) - An API that returns a JSON response and optionally uses the `name` query param for customization.  Otherwise returns a default message.
+- ✅ [`/api/fragment`](https://d2uq7nqhoyk6oy.cloudfront.net/api/fragment) - An API for returning fragments of server rendered Web Components as HTML, that are then appended to the DOM.  The same card component used in SSR also runs on the client to provide interactivity, like event handling.
+- ✅ [`/api/search`](https://d2uq7nqhoyk6oy.cloudfront.net/api/event) - An API for handling a search using  `request.formData()`
+- ✅ [`/api/event`](https://d2uq7nqhoyk6oy.cloudfront.net/api/event) - An API for mimicking a webhook `POST` request that uses `request.json()`
 
 ### SSR Pages
 
-- ✅ [`/products/`](https://d3fe41uuvgfj7o.cloudfront.net/products/) - SSR page for rendering Greenwood pages.
+- ✅ [`/products/`](https://d2uq7nqhoyk6oy.cloudfront.net/products/) - SSR page for rendering Greenwood pages.
