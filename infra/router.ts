@@ -5,15 +5,14 @@ import { api } from './api-routes';
 const ssrPages = ((await import(new URL('../../public/graph.json', import.meta.url), { with: { type: 'json' } })).default).filter(page => page.isSSR);
 const ssrRoutes = {};
 
-// TODO handle base path
 ssrPages.forEach((page) => {
-  const { route, id } = page;
+  const { route } = page;
 
   ssrRoutes[page.route] = {
     url: api.url,
     rewrite: {
       regex: `^${route}$`,
-      to: `/routes/${id}`
+      to: `/routes/${route}`
     }
   }
 })

@@ -11,9 +11,9 @@ const ssrPages = ((await import(new URL('../../public/graph.json', import.meta.u
 // https://sst.dev/docs/component/aws/apigatewayv2
 // https://sst.dev/docs/component/aws/function
 ssrPages.forEach((page) => {
-  const { id } = page;
+  const { id, route } = page;
 
-  api.route(`GET /routes/${id}`, {
+  api.route(`GET /routes/${route}`, {
     bundle: `.aws-output/routes/${id}`,
     handler: "index.handler",
     runtime: RUNTIME
@@ -21,10 +21,10 @@ ssrPages.forEach((page) => {
 })
 
 apiRoutes.forEach((apiRoute) => {
-  const [route] = apiRoute;
+  const [route, id] = apiRoute;
 
   api.route(`ANY ${route}`, {
-    bundle: `.aws-output/${route}`,
+    bundle: `.aws-output/${id}`,
     handler: "index.handler",
     runtime: RUNTIME
   })
