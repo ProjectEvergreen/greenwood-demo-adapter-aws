@@ -22,8 +22,8 @@ console.log('ROUTER.ts', { ssrRoutes, api });
 // https://sst.dev/docs/component/aws/router
 export const router = new sst.aws.Router("MyRouter", {
   routes: {
-    "/api/*": api.url,
-    // ...ssrRoutes,
+    // "/api/*": api.url,
+    ...ssrRoutes,
     "/*": frontend.url
   },
   invalidation: true,

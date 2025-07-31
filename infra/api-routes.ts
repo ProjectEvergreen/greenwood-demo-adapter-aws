@@ -21,17 +21,17 @@ ssrPages.forEach((page) => {
   });
 })
 
-apiRoutes.forEach((apiRoute) => {
-  console.log({ apiRoute })
-  const [route, details] = apiRoute;
+// apiRoutes.forEach((apiRoute) => {
+//   console.log({ apiRoute })
+//   const [route, details] = apiRoute;
 
-  console.log({ route, details });
-  console.log(`ANY ${route}`)
-  api.route(`ANY ${route}`, {
-    bundle: `.aws-output/api/${details.id}`,
-    handler: "index.handler",
-    runtime: RUNTIME
-  })
-});
+//   console.log({ route, details });
+//   console.log(`ANY ${route}`)
+//   api.route(`ANY ${route}`, {
+//     bundle: `.aws-output/api/${details.id}`,
+//     handler: "index.handler",
+//     runtime: RUNTIME
+//   })
+// });
 
 console.log('API ROUTES.ts', { ssrPages, apiRoutes });
