@@ -33,3 +33,5 @@ apiRoutes.forEach((apiRoute) => {
     runtime: RUNTIME
   })
 });
+
+console.log('API ROUTES.ts', { ssrPages, apiRoutes });

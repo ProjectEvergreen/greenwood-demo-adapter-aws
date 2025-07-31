@@ -12,10 +12,12 @@ ssrPages.forEach((page) => {
     url: api.url,
     rewrite: {
       regex: `^${route}$`,
-      to: `/routes/${route}`
+      to: `/routes${route}`
     }
   }
 })
+
+console.log('ROUTER.ts', { ssrRoutes, api });
 
 // https://sst.dev/docs/component/aws/router
 export const router = new sst.aws.Router("MyRouter", {
