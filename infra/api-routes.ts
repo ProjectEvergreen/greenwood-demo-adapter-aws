@@ -4,7 +4,7 @@ const RUNTIME = "nodejs22.x";
 
 // TODO need to handle basePath here?  (and / or all adapters?)
 // @ts-expect-error see https://github.com/microsoft/TypeScript/issues/42866
-const apiRoutes = ((await import(new URL('../../public/manifest.json', import.meta.url), { with: { type: 'json' } })).default).apis.value;
+// const apiRoutes = ((await import(new URL('../../public/manifest.json', import.meta.url), { with: { type: 'json' } })).default).apis.value;
 // @ts-expect-error see https://github.com/microsoft/TypeScript/issues/42866
 const ssrPages = ((await import(new URL('../../public/graph.json', import.meta.url), { with: { type: 'json' } })).default).filter(page => page.isSSR);
 
@@ -12,7 +12,6 @@ const ssrPages = ((await import(new URL('../../public/graph.json', import.meta.u
 // https://sst.dev/docs/component/aws/function
 ssrPages.forEach((page) => {
   const { id, route } = page;
-  console.log({ page })
 
   api.route(`GET /routes${route}`, {
     bundle: `.aws-output/routes/${id}`,
@@ -21,17 +20,12 @@ ssrPages.forEach((page) => {
   });
 })
 
-apiRoutes.forEach((apiRoute) => {
-  console.log({ apiRoute })
-  const [route, details] = apiRoute;
+// apiRoutes.forEach((apiRoute) => {
+//   const [route, details] = apiRoute;
 
-  console.log({ route, details });
-  console.log(`ANY ${route}`)
-  api.route(`ANY ${route}`, {
-    bundle: `.aws-output/api/${details.id}`,
-    handler: "index.handler",
-    runtime: RUNTIME
-  })
-});
-
-console.log('API ROUTES.ts', { ssrPages, apiRoutes });
+//   api.route(`ANY ${route}`, {
+//     bundle: `.aws-output/api/${details.id}`,
+//     handler: "index.handler",
+//     runtime: RUNTIME
+//   })
+// });

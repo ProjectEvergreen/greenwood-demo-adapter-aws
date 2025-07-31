@@ -1,23 +1,23 @@
 import { frontend } from './static';
-// import { api } from './api-routes';
+import { api } from './api-routes';
 
 // @ts-expect-error see https://github.com/microsoft/TypeScript/issues/42866
 const ssrPages = ((await import(new URL('../../public/graph.json', import.meta.url), { with: { type: 'json' } })).default).filter(page => page.isSSR);
 const ssrRoutes = {};
 
-// ssrPages.forEach((page) => {
-//   const { route } = page;
+ssrPages.forEach((page) => {
+  const { route } = page;
 
-//   ssrRoutes[page.route] = {
-//     url: api.url,
-//     rewrite: {
-//       regex: `^${route}$`,
-//       to: `/routes${route}`
-//     }
-//   }
-// })
+  ssrRoutes[page.route] = {
+    url: api.url,
+    rewrite: {
+      regex: `^${route}$`,
+      to: `/routes${route}`
+    }
+  }
+})
 
-// console.log('ROUTER.ts', { ssrRoutes, api });
+console.log('ROUTER.ts', { ssrRoutes });
 
 // https://sst.dev/docs/component/aws/router
 export const router = new sst.aws.Router("MyRouter", {
