@@ -14,7 +14,7 @@ ssrPages.forEach((page) => {
   const { id, route } = page;
   console.log({ page })
 
-  api.route(`GET /routes/${route}`, {
+  api.route(`GET /routes${route}`, {
     bundle: `.aws-output/routes/${id}`,
     handler: "index.handler",
     runtime: RUNTIME
