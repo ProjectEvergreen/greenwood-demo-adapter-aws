@@ -12,6 +12,7 @@ const ssrPages = ((await import(new URL('../../public/graph.json', import.meta.u
 // https://sst.dev/docs/component/aws/function
 ssrPages.forEach((page) => {
   const { id, route } = page;
+  console.log({ page })
 
   api.route(`GET /routes/${route}`, {
     bundle: `.aws-output/routes/${id}`,
@@ -21,10 +22,13 @@ ssrPages.forEach((page) => {
 })
 
 apiRoutes.forEach((apiRoute) => {
-  const [route, id] = apiRoute;
+  console.log({ apiRoute })
+  const [route, details] = apiRoute;
 
+  console.log({ route, details });
+  console.log(`ANY ${route}`)
   api.route(`ANY ${route}`, {
-    bundle: `.aws-output/${id}`,
+    bundle: `.aws-output/api/${details.id}`,
     handler: "index.handler",
     runtime: RUNTIME
   })

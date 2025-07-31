@@ -12,7 +12,7 @@ ssrPages.forEach((page) => {
     url: api.url,
     rewrite: {
       regex: `^${route}$`,
-      to: `/routes/${route}`
+      to: `/routes${route}`
     }
   }
 })
