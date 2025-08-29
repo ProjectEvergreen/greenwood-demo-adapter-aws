@@ -20,7 +20,6 @@
   ],
   "scripts": {
     "arc": "arc",
-    "clean": "rimraf public .greenwood",
     "dev": "greenwood develop",
     "build": "greenwood build",
     "serve": "greenwood build && greenwood serve",
@@ -31,8 +30,7 @@
   },
   "devDependencies": {
     "@architect/architect": "^11.1.0",
-    "@greenwood/cli": "~0.32.0",
-    "@greenwood/plugin-adapter-aws": "~0.32.0",
-    "rimraf": "^6.0.0"
+    "@greenwood/cli": "~0.33.0-alpha.7",
+    "@greenwood/plugin-adapter-aws": "~0.32.0-alpha.7"
   }
 }
