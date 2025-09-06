@@ -11,7 +11,5 @@ export default $config({
   },
   async run() {
     await import("./infra/router")
-    // await import("./infra/static");
-    // await import("./infra/api-routes");
   },
 });
