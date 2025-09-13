@@ -21,10 +21,10 @@ ssrPages.forEach((page) => {
 })
 
 apiRoutes.forEach((apiRoute) => {
-  const [route] = apiRoute;
+  const [route, { id }] = apiRoute;
 
   api.route(`ANY ${route}`, {
-    bundle: `.aws-output/${route}`,
+    bundle: `.aws-output/api/${id}`,
     handler: "index.handler",
     runtime: RUNTIME
   })
