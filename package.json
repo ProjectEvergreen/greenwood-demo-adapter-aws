@@ -28,8 +28,8 @@
     "deploy:prod": "sst deploy --stage production"
   },
   "devDependencies": {
-    "@greenwood/cli": "~0.33.0",
-    "@greenwood/plugin-adapter-aws": "~0.33.0",
+    "@greenwood/cli": "~0.34.0-alpha.0",
+    "@greenwood/plugin-adapter-aws": "~0.34.0-alpha.0",
     "sst": "^4.14.1"
   },
   "optionalDependencies": {
