@@ -30,8 +30,8 @@
   },
   "devDependencies": {
     "@architect/architect": "^11.1.0",
-    "@greenwood/cli": "~0.33.0",
-    "@greenwood/plugin-adapter-aws": "~0.33.0"
+    "@greenwood/cli": "~0.34.0-alpha.0",
+    "@greenwood/plugin-adapter-aws": "~0.34.0-alpha.0"
   },
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "^4.49.0"
