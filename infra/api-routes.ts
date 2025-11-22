@@ -22,9 +22,9 @@ ssrPages.forEach((page) => {
 })
 
 apiRoutes.forEach((apiRoute) => {
-  console.log("Setting up API route:", apiRoute);
   const [route, { id }] = apiRoute;
 
+  // swap out [] for {} in route for AWS API Gateway compatibility
   api.route(`ANY ${route.replace('[', '{').replace(']', '}')}`, {
     bundle: `.aws-output/api/${id}`,
     handler: "index.handler",
