@@ -13,8 +13,8 @@ ssrPages.forEach((page) => {
   if(segment?.key) {
     // swap out [] for a wildcard for Cloudfront routing compatibility
     const regexRoute  = route.replace(`[${segment.key}]`, `(.*)`);
+    const routeKey = `/${id.replaceAll('-', '')}/`;
     console.log(` - route: ${regexRoute} -> /routes/${id}`);
-    const routeKey = id.replaceAll('-', '');
     console.log({ routeKey });
 
     ssrRoutes[routeKey] = {
@@ -35,8 +35,6 @@ ssrPages.forEach((page) => {
     }
   }
 })
-
-console.log("SSR Routes:", ssrRoutes);
 
 // https://sst.dev/docs/component/aws/router
 export const router = new sst.aws.Router("MyRouter", {
