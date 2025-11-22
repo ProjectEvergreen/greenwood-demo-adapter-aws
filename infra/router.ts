@@ -9,12 +9,14 @@ const ssrRoutes = {};
 ssrPages.forEach((page) => {
   console.log("Setting up SSR routing:", page);
   const { route, id, segment } = page;
+  const handledRoute = segment?.key ? route.replace(`[${segment.key}]`, `*`) : route;
+  console.log(` - route: ${handledRoute} -> /routes/${id}`);
 
   ssrRoutes[page.route] = {
     url: api.url,
     rewrite: {
       // swap out [] for a wilcard for Cloudfront routing compatibility
-      regex: `^${route.replace(`[${segment}]`, '*')}$`,
+      regex: `^${handledRoute}$`,
       to: `/routes/${id}`
     }
   }
