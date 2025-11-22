@@ -11,14 +11,15 @@ ssrPages.forEach((page) => {
   const { route, id, segment } = page;
 
   if(segment?.key) {
+    // swap out [] for a wildcard for Cloudfront routing compatibility
     const regexRoute  = route.replace(`[${segment.key}]`, `(.*)`);
     console.log(` - route: ${regexRoute} -> /routes/${id}`);
 
     ssrRoutes[id] = {
       url: api.url,
       rewrite: {
-        // swap out [] for a wildcard for Cloudfront routing compatibility
-        regex: `^${regexRoute}$`,
+        regex:  `^/products/$`,
+        // regex: `^${regexRoute}$`,
         to: `/routes/${id}`
       }
     }
