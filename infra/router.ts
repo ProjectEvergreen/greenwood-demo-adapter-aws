@@ -11,17 +11,17 @@ ssrPages.forEach((page) => {
   const { route, id, segment } = page;
 
   if(segment?.key) {
-    // const handledRoute = segment?.key ? route.replace(`[${segment.key}]`, `*`) : route;
-    // console.log(` - route: ${handledRoute} -> /routes/${id}`);
+    const handledRoute = segment?.key ? route.replace(`[${segment.key}]`, `*`) : route;
+    console.log(` - route: ${handledRoute} -> /routes/${id}`);
 
-    // ssrRoutes[handledRoute] = {
-    //   url: api.url,
-    //   rewrite: {
-    //     // swap out [] for a wildcard for Cloudfront routing compatibility
-    //     regex: `^${handledRoute}$`,
-    //     to: `/routes/${id}`
-    //   }
-    // }
+    ssrRoutes[id] = {
+      url: api.url,
+      rewrite: {
+        // swap out [] for a wildcard for Cloudfront routing compatibility
+        regex: `^${handledRoute}$`,
+        to: `/routes/${id}`
+      }
+    }
   } else {
     ssrRoutes[page.route] = {
       url: api.url,
