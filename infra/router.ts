@@ -6,18 +6,19 @@ const ssrPages = ((await import(new URL('../../public/graph.json', import.meta.u
 const ssrRoutes = {};
 
 // TODO handle base path
-// ssrPages.forEach((page) => {
-//   const { route, id } = page;
+ssrPages.forEach((page) => {
+  console.log("Setting up SSR routing:", page);
+  const { route, id, segment } = page;
 
-//   ssrRoutes[page.route] = {
-//     url: api.url,
-//     rewrite: {
-//       // swap out [] for {} in route for AWS API Gateway compatibility
-//       regex: `^${route.replace('[', '{').replace(']', '}')}$`,
-//       to: `/routes/${id}`
-//     }
-//   }
-// })
+  ssrRoutes[page.route] = {
+    url: api.url,
+    rewrite: {
+      // swap out [] for a wilcard for Cloudfront routing compatibility
+      regex: `^${route.replace(`[${segment}]`, '*')}$`,
+      to: `/routes/${id}`
+    }
+  }
+})
 
 console.log("SSR Routes:", ssrRoutes);
 
