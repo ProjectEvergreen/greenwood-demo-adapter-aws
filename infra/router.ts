@@ -14,7 +14,7 @@ ssrPages.forEach((page) => {
     // swap out [] for a wildcard for Cloudfront routing compatibility
     const regexRoute  = route.replace(`[${segment.key}]`, `(.*)`);
     console.log(` - route: ${regexRoute} -> /routes/${id}`);
-    const routeKey = route.replaceAll('-', '');
+    const routeKey = id.replaceAll('-', '');
     console.log({ routeKey });
 
     ssrRoutes[routeKey] = {
