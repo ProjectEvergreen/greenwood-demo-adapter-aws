@@ -18,6 +18,9 @@ ssrPages.forEach((page) => {
   }
 })
 
+console.log("SSR Routes:", ssrRoutes);
+console.log("API URL:", api);
+
 // https://sst.dev/docs/component/aws/router
 export const router = new sst.aws.Router("MyRouter", {
   routes: {
