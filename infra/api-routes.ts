@@ -25,7 +25,7 @@ apiRoutes.forEach((apiRoute) => {
   console.log("Setting up API route:", apiRoute);
   const [route, { id }] = apiRoute;
 
-  api.route(`ANY ${route}`, {
+  api.route(`ANY ${route.replace('[', '{').replace(']', '}')}`, {
     bundle: `.aws-output/api/${id}`,
     handler: "index.handler",
     runtime: RUNTIME
