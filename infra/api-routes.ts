@@ -11,6 +11,7 @@ const ssrPages = ((await import(new URL('../../public/graph.json', import.meta.u
 // https://sst.dev/docs/component/aws/apigatewayv2
 // https://sst.dev/docs/component/aws/function
 ssrPages.forEach((page) => {
+  console.log("Setting up SSR route:", page);
   const { id } = page;
 
   api.route(`GET /routes/${id}`, {
@@ -21,6 +22,7 @@ ssrPages.forEach((page) => {
 })
 
 apiRoutes.forEach((apiRoute) => {
+  console.log("Setting up API route:", apiRoute);
   const [route, { id }] = apiRoute;
 
   api.route(`ANY ${route}`, {
