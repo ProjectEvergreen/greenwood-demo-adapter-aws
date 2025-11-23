@@ -11,9 +11,10 @@ const ssrPages = ((await import(new URL('../../public/graph.json', import.meta.u
 // https://sst.dev/docs/component/aws/apigatewayv2
 // https://sst.dev/docs/component/aws/function
 ssrPages.forEach((page) => {
-  const { id } = page;
+  const { id, segment } = page;
+  const suffix = segment?.key ? `/{proxy+}` : '';
 
-  api.route(`GET /routes/${id}`, {
+  api.route(`GET /routes/${id}${suffix}`, {
     bundle: `.aws-output/routes/${id}`,
     handler: "index.handler",
     runtime: RUNTIME
