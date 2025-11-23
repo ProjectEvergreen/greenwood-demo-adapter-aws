@@ -13,7 +13,7 @@ ssrPages.forEach((page) => {
   if(segment?.key) {
     // swap out [] for a wildcard for Cloudfront routing compatibility
     const regexRoute  = route.replace(`[${segment.key}]`, `(.*)`);
-    const routeKey = route.replace(`[${segment.key}]`, '*'); // `/${id.replaceAll('-', '')}/`;
+    const routeKey = route.replace(`[${segment.key}]`, '(.*)'); // `/${id.replaceAll('-', '')}/`;
     console.log(` - route: ${regexRoute} -> /routes/${id}`);
     console.log({ routeKey });
 
@@ -22,7 +22,7 @@ ssrPages.forEach((page) => {
       rewrite: {
         // regex:  `^/products/$`,
         regex: `^${regexRoute}$`,
-        to: `/routes/${id}`
+        to: `/routes/${id}?${segment.key}=$1`
       }
     }
   } else {
