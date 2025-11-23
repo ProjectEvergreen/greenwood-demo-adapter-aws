@@ -6,6 +6,7 @@ export default class ProductDetailsPage extends HTMLElement {
 
   constructor({ request, props }) {
     super();
+    console.log({ request, props });
     this.#id = props?.id;
   }
 

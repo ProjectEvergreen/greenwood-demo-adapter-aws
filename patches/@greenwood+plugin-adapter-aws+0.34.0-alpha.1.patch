@@ -1,8 +1,8 @@
 diff --git a/node_modules/@greenwood/plugin-adapter-aws/src/index.js b/node_modules/@greenwood/plugin-adapter-aws/src/index.js
-index 791dd52..0a48e19 100644
+index 791dd52..1a96377 100644
 --- a/node_modules/@greenwood/plugin-adapter-aws/src/index.js
 +++ b/node_modules/@greenwood/plugin-adapter-aws/src/index.js
-@@ -4,9 +4,16 @@ import { checkResourceExists } from "@greenwood/cli/src/lib/resource-utils.js";
+@@ -4,17 +4,27 @@ import { checkResourceExists } from "@greenwood/cli/src/lib/resource-utils.js";
  
  // https://docs.aws.amazon.com/lambda/latest/dg/services-apigateway.html#apigateway-example-event
  // https://docs.aws.amazon.com/lambda/latest/dg/urls-invocation.html
@@ -20,15 +20,18 @@ index 791dd52..0a48e19 100644
  
    return `
      import { handler as ${handlerAlias} } from './${path}.js';
-@@ -15,6 +22,7 @@ function generateOutputFormat(id, type) {
+     export async function handler (event, context) {
+       const { body, headers = {}, rawPath = '', rawQueryString = ''} = event;
++      console.log({ event });
        const { method = '' } = event?.requestContext?.http;
        const queryParams = rawQueryString === '' ? '' : \`?\${rawQueryString}\`;
        const contentType = headers['content-type'] || '';
 +      ${extractProps}
++      console.log({ props });
        let format = body;
  
        if (['GET', 'HEAD'].includes(method.toUpperCase())) {
-@@ -39,8 +47,9 @@ function generateOutputFormat(id, type) {
+@@ -39,8 +49,9 @@ function generateOutputFormat(id, type) {
          headers: new Headers(headers),
          method
        });
@@ -40,7 +43,7 @@ index 791dd52..0a48e19 100644
  
        return {
          "body": await res.text(),
-@@ -51,8 +60,8 @@ function generateOutputFormat(id, type) {
+@@ -51,8 +62,8 @@ function generateOutputFormat(id, type) {
    `;
  }
  
@@ -51,7 +54,7 @@ index 791dd52..0a48e19 100644
  
    await fs.mkdir(outputRoot, { recursive: true });
    await fs.writeFile(new URL("./index.js", outputRoot), outputFormat);
-@@ -79,13 +88,13 @@ async function awsAdapter(compilation) {
+@@ -79,13 +90,13 @@ async function awsAdapter(compilation) {
  
    for (const page of ssrPages) {
      const outputType = "page";
@@ -67,7 +70,7 @@ index 791dd52..0a48e19 100644
  
      // handle user's actual route entry file
      await fs.cp(
-@@ -104,11 +113,11 @@ async function awsAdapter(compilation) {
+@@ -104,11 +115,11 @@ async function awsAdapter(compilation) {
  
    for (const [key, value] of apiRoutes.entries()) {
      const outputType = "api";
