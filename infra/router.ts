@@ -22,7 +22,8 @@ ssrPages.forEach((page) => {
       rewrite: {
         // regex:  `^/products/$`,
         regex: `^${regexRoute}$`,
-        to: `/routes/${id}/$1`
+        to: `/routes/${id}`
+        // to: `/routes/${id}/$1`
       }
     }
   } else {
