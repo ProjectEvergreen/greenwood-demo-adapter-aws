@@ -13,8 +13,9 @@ const ssrPages = ((await import(new URL('../../public/graph.json', import.meta.u
 ssrPages.forEach((page) => {
   const { id, segment } = page;
   const suffix = segment?.key ? `/{proxy+}` : '';
+  console.log(`Setting up SSR API route: GET /routes/${id}${suffix}`);
 
-  api.route(`GET /routes/${id}${suffix}`, {
+  api.route(`GET /routes/${id}`, {
     bundle: `.aws-output/routes/${id}`,
     handler: "index.handler",
     runtime: RUNTIME
