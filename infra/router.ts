@@ -24,7 +24,7 @@ ssrPages.forEach((page) => {
         // regex: '^/product/(.*)$',
         // to: '/routes/product/$1'
         regex: `^${regexRoute}$`,
-        to: `/routes/${id}`
+        to: `/${id}`
       }
     }
   } else {
