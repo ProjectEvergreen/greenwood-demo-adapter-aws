@@ -18,13 +18,13 @@ ssrPages.forEach((page) => {
     console.log(` - route: ${regexRoute} -> /routes/${id}`);
     console.log({ route, id, routeKey });
 
-    ssrRoutes['/product/'] = {
+    ssrRoutes[routeKey] = {
       url: api.url,
       rewrite: {
-        regex: `^/product/(.*)$`,
-        to: `/routes/product/$1`
-        // regex: `^${regexRoute}$`,
-        // to: `/routes/${id}`
+        // regex: '^/product/(.*)$',
+        // to: '/routes/product/$1'
+        regex: `^${regexRoute}$`,
+        to: `/routes/${id}`
       }
     }
   } else {
