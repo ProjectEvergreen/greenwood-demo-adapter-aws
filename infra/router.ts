@@ -18,7 +18,7 @@ ssrPages.forEach((page) => {
     console.log(` - route: ${regexRoute} -> /routes/${id}`);
     console.log({ route, id, routeKey });
 
-    ssrRoutes['/product/{id}'] = {
+    ssrRoutes['/product'] = {
       url: api.url,
       rewrite: {
         // TODO: un-hardcode
