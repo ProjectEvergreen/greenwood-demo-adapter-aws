@@ -11,11 +11,12 @@ const ssrPages = ((await import(new URL('../../public/graph.json', import.meta.u
 // https://sst.dev/docs/component/aws/apigatewayv2
 // https://sst.dev/docs/component/aws/function
 ssrPages.forEach((page) => {
-  const { id, segment } = page;
-  const suffix = segment?.key ? `/{proxy+}` : '';
-  console.log(`Setting up SSR API route: GET /routes/${id}${suffix}`);
+  const { id, segment, route } = page;
+  const suffix = segment?.key ? `${route.replace('[', '{').replace(']', '}')}` : route;
+  console.log(`Setting up SSR API route: GET /routes${suffix}`);
 
-  api.route(`GET /routes/${id}`, {
+  // TODO: unharcode
+  api.route(`GET /routes/product/{id}`, {
     bundle: `.aws-output/routes/${id}`,
     handler: "index.handler",
     runtime: RUNTIME
