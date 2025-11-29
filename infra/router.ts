@@ -23,7 +23,7 @@ ssrPages.forEach((page) => {
       rewrite: {
         // TODO: un-hardcode
         regex: "^/product/(.*)$",
-        to: "/product/$1"
+        to: "/routes/product/$1"
         // regex: `^${regexRoute}$`,
         // to: '/route/product/1/'
         // to: `/routes/${id}`
