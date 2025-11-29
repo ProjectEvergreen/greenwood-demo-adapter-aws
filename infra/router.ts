@@ -21,8 +21,11 @@ ssrPages.forEach((page) => {
     ssrRoutes[routeKey] = {
       url: api.url,
       rewrite: {
-        regex: `^${regexRoute}$`,
-        to: '/route/product/1/'
+        // TODO: un-hardcode
+        regex: "^/product/(.*)$",
+        to: "/product/$1"
+        // regex: `^${regexRoute}$`,
+        // to: '/route/product/1/'
         // to: `/routes/${id}`
         // regex:  `^/products/$`,
         // to: `/routes/${id}/$1`
