@@ -12,12 +12,13 @@ const ssrPages = ((await import(new URL('../../public/graph.json', import.meta.u
 // https://sst.dev/docs/component/aws/function
 ssrPages.forEach((page) => {
   const { id, segment, route } = page;
-  const suffix = segment?.key ? `${route.replace('[', '{').replace(']', '}')}` : route;
+  // TODO: un-hardcode
+  // TODO: trailing slash
+  const suffix = segment?.key ? `/product/{id}/` : route;
+  // const suffix = segment?.key ? `${route.replace('[', '{').replace(']', '}')}` : route;
   console.log(`Setting up SSR API route: GET /routes${suffix}`);
 
-  // TODO: un-hardcode
-  api.route(`GET /routes/product/{id}`, {
-  // api.route(`GET /routes/${id}`, {
+  api.route(`GET /routes${suffix}`, {
     bundle: `.aws-output/routes/${id}`,
     handler: "index.handler",
     runtime: RUNTIME
