@@ -16,7 +16,7 @@ ssrPages.forEach((page) => {
   console.log(`Setting up SSR API route: GET /routes${suffix}`);
 
   // TODO: un-hardcode
-  api.route(`GET /routes/product/{id}`, {
+  api.route(`ANY /routes/product/{id}`, {
   // api.route(`GET /routes/${id}`, {
     bundle: `.aws-output/routes/${id}`,
     handler: "index.handler",
