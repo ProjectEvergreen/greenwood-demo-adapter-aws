@@ -16,7 +16,7 @@ ssrPages.forEach((page) => {
     // const routeKey = route.replace(`[${segment.key}]`, '(.*)'); // `/${id.replaceAll('-', '')}/`;
     const routeKey = route.replace(`[${segment.key}]`, '*'); // `/${id.replaceAll('-', '')}/`;
     console.log(` - route: ${regexRoute} -> /routes/${id}`);
-    console.log({ routeKey });
+    console.log({ route, id, routeKey });
 
     ssrRoutes['/product/'] = {
       url: api.url,
