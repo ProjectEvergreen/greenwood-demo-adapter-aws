@@ -22,7 +22,8 @@ ssrPages.forEach((page) => {
       url: api.url,
       rewrite: {
         regex: `^${regexRoute}$`,
-        to: `/routes/${id}`
+        to: '/route/product/1/'
+        // to: `/routes/${id}`
         // regex:  `^/products/$`,
         // to: `/routes/${id}/$1`
       }
