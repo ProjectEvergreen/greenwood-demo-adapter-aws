@@ -1,8 +1,8 @@
 diff --git a/node_modules/@greenwood/plugin-adapter-aws/src/index.js b/node_modules/@greenwood/plugin-adapter-aws/src/index.js
-index 791dd52..1a96377 100644
+index 791dd52..3ec0aff 100644
 --- a/node_modules/@greenwood/plugin-adapter-aws/src/index.js
 +++ b/node_modules/@greenwood/plugin-adapter-aws/src/index.js
-@@ -4,17 +4,27 @@ import { checkResourceExists } from "@greenwood/cli/src/lib/resource-utils.js";
+@@ -4,17 +4,28 @@ import { checkResourceExists } from "@greenwood/cli/src/lib/resource-utils.js";
  
  // https://docs.aws.amazon.com/lambda/latest/dg/services-apigateway.html#apigateway-example-event
  // https://docs.aws.amazon.com/lambda/latest/dg/urls-invocation.html
@@ -12,9 +12,10 @@ index 791dd52..1a96377 100644
    const path = type === "page" ? `${id}.route` : id;
 +  // TODO: use `URLPattern` for extracting props after we upgrade to Node24
 +  // https://github.com/ProjectEvergreen/greenwood/issues/1614
++  // event.headers.referer: 'https://d3fe41uuvgfj7o.cloudfront.net/products/',
 +  const extractProps = segmentKey
 +    ? type === "page"
-+      ? `const props = { ${segmentKey}: rawPath.split('/')[rawPath.split('/').length - 2] }`
++      ? `const props = { ${segmentKey}: rawPath.split('/')[rawPath.split('/').length - rawPath.endsWith('/') ? 2 : 1] }`
 +      : `const props = { ${segmentKey}: rawPath.split('?')[0].split('/').pop() }`
 +    : "const props = {}";
  
@@ -31,7 +32,7 @@ index 791dd52..1a96377 100644
        let format = body;
  
        if (['GET', 'HEAD'].includes(method.toUpperCase())) {
-@@ -39,8 +49,9 @@ function generateOutputFormat(id, type) {
+@@ -39,8 +50,9 @@ function generateOutputFormat(id, type) {
          headers: new Headers(headers),
          method
        });
@@ -43,7 +44,7 @@ index 791dd52..1a96377 100644
  
        return {
          "body": await res.text(),
-@@ -51,8 +62,8 @@ function generateOutputFormat(id, type) {
+@@ -51,8 +63,8 @@ function generateOutputFormat(id, type) {
    `;
  }
  
@@ -54,7 +55,7 @@ index 791dd52..1a96377 100644
  
    await fs.mkdir(outputRoot, { recursive: true });
    await fs.writeFile(new URL("./index.js", outputRoot), outputFormat);
-@@ -79,13 +90,13 @@ async function awsAdapter(compilation) {
+@@ -79,13 +91,13 @@ async function awsAdapter(compilation) {
  
    for (const page of ssrPages) {
      const outputType = "page";
@@ -70,7 +71,7 @@ index 791dd52..1a96377 100644
  
      // handle user's actual route entry file
      await fs.cp(
-@@ -104,11 +115,11 @@ async function awsAdapter(compilation) {
+@@ -104,11 +116,11 @@ async function awsAdapter(compilation) {
  
    for (const [key, value] of apiRoutes.entries()) {
      const outputType = "api";

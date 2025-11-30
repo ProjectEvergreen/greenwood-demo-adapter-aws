@@ -22,8 +22,11 @@ ssrPages.forEach((page) => {
       url: api.url,
       rewrite: {
         // TODO: un-hardcode
+        // TODO: we're dropping the tailing / slash here, e.g. only `/product/1` is matching
         regex: "^/product/(.*)$",
         to: "/routes/product/$1"
+        // regex: "^/product/?(.*)$",
+        // to: "/routes/product/$1/",
         // regex: `^${regexRoute}$`,
         // to: '/route/product/1/'
         // to: `/routes/${id}`
