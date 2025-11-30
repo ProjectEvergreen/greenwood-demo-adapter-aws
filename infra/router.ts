@@ -18,7 +18,7 @@ ssrPages.forEach((page) => {
     console.log('segmented routing', ` - route: ${regexRoute} -> /routes/${id}`);
     console.log({ route, id, routeKey });
 
-    ssrRoutes['/product/*'] = {
+    ssrRoutes['/product/*/'] = {
       url: api.url,
       rewrite: {
         // TODO: un-hardcode
