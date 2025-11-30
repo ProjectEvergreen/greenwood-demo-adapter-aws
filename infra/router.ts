@@ -34,7 +34,7 @@ ssrPages.forEach((page) => {
   } else {
     const r = `/${route.split('/').filter((segment) => segment !== '').join('/')}`;
     console.log('non segment page', { r });
-    ssrRoutes[page.route] = {
+    ssrRoutes[r] = {
       url: api.url,
       rewrite: {
         regex: `^${route}$`,
