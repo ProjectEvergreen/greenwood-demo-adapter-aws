@@ -10,6 +10,7 @@ const ssrPages = ((await import(new URL('../../public/graph.json', import.meta.u
 
 // https://sst.dev/docs/component/aws/apigatewayv2
 // https://sst.dev/docs/component/aws/function
+// NOTE: API Gateway routes can NOT end in a trailing /
 ssrPages.forEach((page) => {
   const { id, segment, route } = page;
   // TODO: un-hardcode
