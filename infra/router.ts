@@ -15,30 +15,30 @@ ssrPages.forEach((page) => {
     const regexRoute  = route.replace(`[${segment.key}]`, `(.*)`);
     // const routeKey = route.replace(`[${segment.key}]`, '(.*)'); // `/${id.replaceAll('-', '')}/`;
     const routeKey = route.replace(`[${segment.key}]`, '*'); // `/${id.replaceAll('-', '')}/`;
-    console.log(` - route: ${regexRoute} -> /routes/${id}`);
+    console.log('segmented routing', ` - route: ${regexRoute} -> /routes/${id}`);
     console.log({ route, id, routeKey });
 
-    ssrRoutes['/product'] = {
-      url: api.url,
-      rewrite: {
-        // TODO: un-hardcode
-        regex: "^/product/(.*)$",
-        to: "/routes/product/$1"
-        // regex: `^${regexRoute}$`,
-        // to: '/route/product/1/'
-        // to: `/routes/${id}`
-        // regex:  `^/products/$`,
-        // to: `/routes/${id}/$1`
-      }
-    }
+    // ssrRoutes['/product/'] = {
+    //   url: api.url,
+    //   rewrite: {
+    //     // TODO: un-hardcode
+    //     regex: "^/product/(.*)$",
+    //     to: "/routes/product/$1"
+    //     // regex: `^${regexRoute}$`,
+    //     // to: '/route/product/1/'
+    //     // to: `/routes/${id}`
+    //     // regex:  `^/products/$`,
+    //     // to: `/routes/${id}/$1`
+    //   }
+    // }
   } else {
     const r = `/${route.split('/').filter((segment) => segment !== '').join('/')}`;
-    console.log('non segment page', { r });
-    ssrRoutes[r] = {
+    console.log('non segment page', { r, route });
+    ssrRoutes[route] = {
       url: api.url,
       rewrite: {
         regex: `^${route}$`,
-        to: `/routes/${id}`
+        to: `/routes/${r}`
       }
     }
   }
@@ -48,7 +48,7 @@ ssrPages.forEach((page) => {
 export const router = new sst.aws.Router("MyRouter", {
   routes: {
     "/api/*": api.url,
-    // ...ssrRoutes,
+    ...ssrRoutes,
     "/*": frontend.url
   },
   invalidation: true,
