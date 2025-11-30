@@ -14,7 +14,7 @@ ssrPages.forEach((page) => {
   const { id, segment, route } = page;
   // TODO: un-hardcode
   // TODO: trailing slash
-  const suffix = segment?.key ? `/product/{id}` : route;
+  const suffix = segment?.key ? `/product/{id}` : `/${route.split('/').filter((segment) => segment !== '').join('/')}`;
   // const suffix = segment?.key ? `${route.replace('[', '{').replace(']', '}')}` : route;
   console.log(`Setting up SSR API route: GET /routes${suffix}`);
 
