@@ -13,11 +13,9 @@ const ssrPages = ((await import(new URL('../../public/graph.json', import.meta.u
 // NOTE: API Gateway routes can NOT end in a trailing /
 ssrPages.forEach((page) => {
   const { id, segment, route } = page;
-  const { key, pathname } = segment;
   const routePattern = segment?.key
-    ? pathname.replace(`:${key}/`, '{proxy+}')
+    ? segment.pathname.replace(`:${segment.key}/`, '{proxy+}')
     : `/${route.split('/').filter((segment) => segment !== '').join('/')}`;
-  console.log(`Setting up SSR API route: GET /routes${routePattern}`);
 
   api.route(`GET /routes${routePattern}`, {
     bundle: `.aws-output/routes/${id}`,
