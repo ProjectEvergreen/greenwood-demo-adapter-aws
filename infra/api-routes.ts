@@ -13,13 +13,13 @@ const ssrPages = ((await import(new URL('../../public/graph.json', import.meta.u
 // NOTE: API Gateway routes can NOT end in a trailing /
 ssrPages.forEach((page) => {
   const { id, segment, route } = page;
-  // TODO: un-hardcode
-  // TODO: trailing slash
-  const suffix = segment?.key ? `/product/{proxy+}` : `/${route.split('/').filter((segment) => segment !== '').join('/')}`;
-  // const suffix = segment?.key ? `${route.replace('[', '{').replace(']', '}')}` : route;
-  console.log(`Setting up SSR API route: GET /routes${suffix}`);
+  const { key, pathname } = segment;
+  const routePattern = segment?.key
+    ? pathname.replace(`:${key}/`, '{proxy+}')
+    : `/${route.split('/').filter((segment) => segment !== '').join('/')}`;
+  console.log(`Setting up SSR API route: GET /routes${routePattern}`);
 
-  api.route(`GET /routes${suffix}`, {
+  api.route(`GET /routes${routePattern}`, {
     bundle: `.aws-output/routes/${id}`,
     handler: "index.handler",
     runtime: RUNTIME
