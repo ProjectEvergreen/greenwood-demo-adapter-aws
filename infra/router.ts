@@ -7,18 +7,11 @@ const ssrRoutes = {};
 
 // TODO handle base path
 ssrPages.forEach((page) => {
-  console.log("Setting up SSR routing:", page);
   const { route, id, segment } = page;
 
   if(segment?.key) {
-    // swap out [] for a wildcard for Cloudfront routing compatibility
-    const regexRoute  = route.replace(`[${segment.key}]`, `(.*)`);
-    const routeKey = route.replace(`[${segment.key}]`, '*');
     const basePattern = segment.pathname.replace(`/:${segment.key}/`, '')
-    console.log('segmented routing', ` - route: ${regexRoute} -> /routes/${id}`);
-    console.log({ route, id, routeKey, basePattern });
 
-    // segment: { key: 'id', pathname: '/product/:id/' }
     ssrRoutes[`${basePattern}/*`] = {
       url: api.url,
       rewrite: {
@@ -28,7 +21,7 @@ ssrPages.forEach((page) => {
     }
   } else {
     const routePattern = `/${route.split('/').filter((segment) => segment !== '').join('/')}`;
-    console.log('non segment page', { routePattern, route });
+
     ssrRoutes[route] = {
       url: api.url,
       rewrite: {
