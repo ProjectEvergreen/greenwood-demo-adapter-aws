@@ -14,7 +14,7 @@ const ssrPages = ((await import(new URL('../../public/graph.json', import.meta.u
 ssrPages.forEach((page) => {
   const { id, segment, route } = page;
   const routePattern = segment?.key
-    ? segment.pathname.replace(`:${segment.key}/`, '{proxy+}')
+    ? segment.pathname.replace(`:${segment.key}/`, '{proxy+}') // we use proxy+ to match everything, including trailing /
     : `/${route.split('/').filter((segment) => segment !== '').join('/')}`;
 
   api.route(`GET /routes${routePattern}`, {
