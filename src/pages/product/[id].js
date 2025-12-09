@@ -1,0 +1,27 @@
+import '../../components/card.js';
+import { getProducts } from '../../services/products.js';
+
+export default class ProductDetailsPage extends HTMLElement {
+  #id;
+
+  constructor({ request, props }) {
+    super();
+    console.log({ request, props });
+    this.#id = props?.id;
+  }
+
+  async connectedCallback() {
+    const product = await getProducts(this.#id);
+    const { title, thumbnail } = product;
+
+    this.innerHTML = `
+      <div class="products-cards-container">
+        <app-card
+          title="${title}"
+          thumbnail="${thumbnail}"
+        >
+        </app-card>
+      </div>
+    `;
+  }
+}
