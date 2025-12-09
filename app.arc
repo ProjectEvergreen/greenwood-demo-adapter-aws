@@ -18,7 +18,7 @@ greenwood-demo-adapter-aws
   method any
   src .aws-output/api/webhook--type-
 
-/product/:id
+/product/:id/*
   method get
   src .aws-output/routes/product--id-
 
