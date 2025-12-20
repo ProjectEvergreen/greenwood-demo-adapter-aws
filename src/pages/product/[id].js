@@ -4,10 +4,9 @@ import { getProducts } from '../../services/products.js';
 export default class ProductDetailsPage extends HTMLElement {
   #id;
 
-  constructor({ request, props }) {
+  constructor({ request, params }) {
     super();
-    console.log({ request, props });
-    this.#id = props?.id;
+    this.#id = params?.id;
   }
 
   async connectedCallback() {
