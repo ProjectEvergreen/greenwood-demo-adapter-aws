@@ -22,14 +22,14 @@
     "sst": "sst",
     "dev": "greenwood develop",
     "build": "greenwood build",
-    "serve": "greenwood build && greenwood serve",
+    "serve": "greenwood serve",
     "start": "npm run serve",
     "deploy:preview": "sst deploy --stage preview",
     "deploy:prod": "sst deploy --stage production"
   },
   "devDependencies": {
-    "@greenwood/cli": "~0.34.0-alpha.2",
-    "@greenwood/plugin-adapter-aws": "~0.34.0-alpha.2",
+    "@greenwood/cli": "~0.34.0-alpha.7",
+    "@greenwood/plugin-adapter-aws": "~0.34.0-alpha.7",
     "sst": "^4.14.1"
   },
   "optionalDependencies": {
