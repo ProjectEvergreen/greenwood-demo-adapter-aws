@@ -30,7 +30,7 @@
   "devDependencies": {
     "@greenwood/cli": "~0.34.0-alpha.7",
     "@greenwood/plugin-adapter-aws": "~0.34.0-alpha.7",
-    "sst": "^4.14.1"
+    "sst": "^4.16.0"
   },
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "^4.9.5",
