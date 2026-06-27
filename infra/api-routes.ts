@@ -10,10 +10,14 @@ const ssrPages = ((await import(new URL('../../public/graph.json', import.meta.u
 
 // https://sst.dev/docs/component/aws/apigatewayv2
 // https://sst.dev/docs/component/aws/function
+// NOTE: API Gateway routes can NOT end in a trailing /
 ssrPages.forEach((page) => {
-  const { id } = page;
+  const { id, segment, route } = page;
+  const routePattern = segment?.key
+    ? segment.pathname.replace(`:${segment.key}/`, '{proxy+}') // we use proxy+ to match everything, including trailing /
+    : `/${route.split('/').filter((segment) => segment !== '').join('/')}`;
 
-  api.route(`GET /routes/${id}`, {
+  api.route(`GET /routes${routePattern}`, {
     bundle: `.aws-output/routes/${id}`,
     handler: "index.handler",
     runtime: RUNTIME
@@ -23,7 +27,8 @@ ssrPages.forEach((page) => {
 apiRoutes.forEach((apiRoute) => {
   const [route, { id }] = apiRoute;
 
-  api.route(`ANY ${route}`, {
+  // swap out [] for {} in route for AWS API Gateway compatibility
+  api.route(`ANY ${route.replace('[', '{').replace(']', '}')}`, {
     bundle: `.aws-output/api/${id}`,
     handler: "index.handler",
     runtime: RUNTIME

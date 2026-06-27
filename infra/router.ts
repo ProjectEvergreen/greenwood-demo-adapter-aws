@@ -7,13 +7,27 @@ const ssrRoutes = {};
 
 // TODO handle base path
 ssrPages.forEach((page) => {
-  const { route, id } = page;
+  const { route, id, segment } = page;
 
-  ssrRoutes[page.route] = {
-    url: api.url,
-    rewrite: {
-      regex: `^${route}$`,
-      to: `/routes/${id}`
+  if(segment?.key) {
+    const basePattern = segment.pathname.replace(`/:${segment.key}/`, '')
+
+    ssrRoutes[`${basePattern}/*`] = {
+      url: api.url,
+      rewrite: {
+        regex: `^${basePattern}/(.*)$`,
+        to: `/routes${basePattern}/$1`
+      }
+    }
+  } else {
+    const routePattern = `/${route.split('/').filter((segment) => segment !== '').join('/')}`;
+
+    ssrRoutes[route] = {
+      url: api.url,
+      rewrite: {
+        regex: `^${route}$`,
+        to: `/routes/${routePattern}`
+      }
     }
   }
 })
