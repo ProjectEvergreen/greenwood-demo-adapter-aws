@@ -1,0 +1,15 @@
+diff --git a/node_modules/@greenwood/plugin-adapter-aws/src/index.js b/node_modules/@greenwood/plugin-adapter-aws/src/index.js
+index 50ab79a..1e2818b 100644
+--- a/node_modules/@greenwood/plugin-adapter-aws/src/index.js
++++ b/node_modules/@greenwood/plugin-adapter-aws/src/index.js
+@@ -9,8 +9,9 @@ function generateOutputFormat(id, type, segmentKey, route = "") {
+   const handlerAlias = "$handler";
+   const path = type === "page" ? `${id}.route` : id;
+   const routePattern = route.replace(new RegExp(`\\[${segmentKey}\\]`, "g"), `:${segmentKey}`);
++  const routePatternPrefix = type === "page" ? "*" : "";
+   const extractParams = segmentKey
+-    ? `const pattern = new URLPattern({ pathname: '${routePattern}' });
++    ? `const pattern = new URLPattern({ pathname: '${routePatternPrefix}${routePattern}' });
+       const match = pattern.exec(new URL(\`\${rawPath}\${queryParams}\`, 'http://localhost'));
+       const params = match ? { ${segmentKey}: match.pathname.groups.${segmentKey} } : {};`
+     : "const params = {}";

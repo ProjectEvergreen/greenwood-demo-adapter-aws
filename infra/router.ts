@@ -13,11 +13,7 @@ ssrPages.forEach((page) => {
     const basePattern = segment.pathname.replace(`/:${segment.key}/`, '')
 
     ssrRoutes[`${basePattern}/*`] = {
-      url: api.url,
-      rewrite: {
-        regex: `^${basePattern}/(.*)$`,
-        to: `/routes${basePattern}/$1`
-      }
+      url: api.url
     }
   } else {
     const routePattern = `/${route.split('/').filter((segment) => segment !== '').join('/')}`;

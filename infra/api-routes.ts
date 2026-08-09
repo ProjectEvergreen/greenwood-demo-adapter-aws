@@ -15,9 +15,9 @@ ssrPages.forEach((page) => {
   const { id, segment, route } = page;
   const routePattern = segment?.key
     ? segment.pathname.replace(`:${segment.key}/`, '{proxy+}') // we use proxy+ to match everything, including trailing /
-    : `/${route.split('/').filter((segment) => segment !== '').join('/')}`;
+    : `/routes/${route.split('/').filter((segment) => segment !== '').join('/')}`;
 
-  api.route(`GET /routes${routePattern}`, {
+  api.route(`GET ${routePattern}`, {
     bundle: `.aws-output/routes/${id}`,
     handler: "index.handler",
     runtime: RUNTIME
