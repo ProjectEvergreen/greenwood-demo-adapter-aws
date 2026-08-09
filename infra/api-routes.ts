@@ -13,6 +13,7 @@ const ssrPages = ((await import(new URL('../../public/graph.json', import.meta.u
 // NOTE: API Gateway routes can NOT end in a trailing /
 ssrPages.forEach((page) => {
   const { id, segment, route } = page;
+  // Dynamic routes retain their public path; static SSR routes can use an internal namespace.
   const routePattern = segment?.key
     ? segment.pathname.replace(`:${segment.key}/`, '{proxy+}') // we use proxy+ to match everything, including trailing /
     : `/routes/${route.split('/').filter((segment) => segment !== '').join('/')}`;

@@ -12,6 +12,7 @@ ssrPages.forEach((page) => {
   if(segment?.key) {
     const basePattern = segment.pathname.replace(`/:${segment.key}/`, '')
 
+    // Preserve the public path so the generic adapter can match it exactly.
     ssrRoutes[`${basePattern}/*`] = {
       url: api.url
     }
