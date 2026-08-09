@@ -33,5 +33,5 @@ greenwood-demo-adapter-aws
 @aws
 # profile default
 region us-east-1
-runtime nodejs22.x
+runtime nodejs24.x
 architecture arm64
