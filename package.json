@@ -26,13 +26,15 @@
     "start": "npm run serve",
     "deploy:preview": "sst deploy --stage preview",
     "deploy:prod": "sst deploy --stage production",
+    "check": "tsc",
     "postinstall": "patch-package"
   },
   "devDependencies": {
     "@greenwood/cli": "~0.35.0-alpha.3",
     "@greenwood/plugin-adapter-aws": "~0.35.0-alpha.3",
     "patch-package": "^8.0.1",
-    "sst": "^4.16.0"
+    "sst": "^4.16.0",
+    "typescript": "^6.0.3"
   },
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "^4.9.5",
