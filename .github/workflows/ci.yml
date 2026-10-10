@@ -25,6 +25,10 @@ jobs:
         run: |
           npm ci
 
+      - name: Check Types
+        run: |
+          npm run check
+
       # use your greenwood build script
       - name: Run Build
         run: |

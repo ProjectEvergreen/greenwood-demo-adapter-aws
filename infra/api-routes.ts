@@ -1,6 +1,6 @@
 export const api = new sst.aws.ApiGatewayV2("Api");
 
-const RUNTIME = "nodejs22.x";
+const RUNTIME = "nodejs24.x";
 
 // TODO need to handle basePath here?  (and / or all adapters?)
 // @ts-expect-error see https://github.com/microsoft/TypeScript/issues/42866
@@ -13,11 +13,12 @@ const ssrPages = ((await import(new URL('../../public/graph.json', import.meta.u
 // NOTE: API Gateway routes can NOT end in a trailing /
 ssrPages.forEach((page) => {
   const { id, segment, route } = page;
+  // Dynamic routes retain their public path; static SSR routes can use an internal namespace.
   const routePattern = segment?.key
     ? segment.pathname.replace(`:${segment.key}/`, '{proxy+}') // we use proxy+ to match everything, including trailing /
-    : `/${route.split('/').filter((segment) => segment !== '').join('/')}`;
+    : `/routes/${route.split('/').filter((segment) => segment !== '').join('/')}`;
 
-  api.route(`GET /routes${routePattern}`, {
+  api.route(`GET ${routePattern}`, {
     bundle: `.aws-output/routes/${id}`,
     handler: "index.handler",
     runtime: RUNTIME
