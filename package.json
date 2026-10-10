@@ -29,8 +29,8 @@
     "postinstall": "patch-package"
   },
   "devDependencies": {
-    "@greenwood/cli": "~0.35.0-alpha.0",
-    "@greenwood/plugin-adapter-aws": "~0.35.0-alpha.0",
+    "@greenwood/cli": "~0.35.0-alpha.3",
+    "@greenwood/plugin-adapter-aws": "~0.35.0-alpha.3",
     "patch-package": "^8.0.1",
     "sst": "^4.16.0"
   },
