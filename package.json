@@ -26,12 +26,14 @@
     "start": "npm run serve",
     "deploy:sandbox": "npm run build && arc sandbox",
     "deploy:staging": "npm run arc deploy -- --staging",
-    "deploy:prod": "npm run arc deploy -- --production"
+    "deploy:prod": "npm run arc deploy -- --production",
+    "check": "tsc"
   },
   "devDependencies": {
     "@architect/architect": "^12.0.0",
     "@greenwood/cli": "~0.35.0-alpha.3",
-    "@greenwood/plugin-adapter-aws": "~0.35.0-alpha.3"
+    "@greenwood/plugin-adapter-aws": "~0.35.0-alpha.3",
+    "typescript": "^6.0.3"
   },
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "^4.49.0"
